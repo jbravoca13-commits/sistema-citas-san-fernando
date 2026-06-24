@@ -48,10 +48,28 @@ app.get('/api/test', async (req, res) => {
   }
 });
 
+
 // PACIENTES
+app.get('/api/pacientes', async (req, res) => {
+  try {
+    const data = await supabaseRequest(
+      'pacientes?select=*&order=id_paciente.asc'
+    );
+
+    res.json(data);
+
+  } catch (error) {
+    res.status(500).json({
+      error: error.message
+    });
+  }
+});
+
 app.post('/api/pacientes', async (req, res) => {
   try {
-    const telefono = String(req.body.telefono || '').trim();
+    const telefono = String(
+      req.body.telefono || ''
+    ).trim();
 
     if (telefono && !/^\d{9}$/.test(telefono)) {
       return res.status(400).json({
@@ -59,9 +77,14 @@ app.post('/api/pacientes', async (req, res) => {
       });
     }
 
+    const datosPaciente = {
+      ...req.body,
+      telefono: telefono
+    };
+
     const data = await supabaseRequest('pacientes', {
       method: 'POST',
-      body: JSON.stringify(req.body)
+      body: JSON.stringify(datosPaciente)
     });
 
     res.status(201).json(data);
@@ -84,11 +107,28 @@ app.get('/api/especialidades', async (req, res) => {
   }
 });
 
+
 // MÉDICOS
+app.get('/api/medicos', async (req, res) => {
+  try {
+    const data = await supabaseRequest(
+      'medicos?select=*&order=id_medico.asc'
+    );
+
+    res.json(data);
+
+  } catch (error) {
+    res.status(500).json({
+      error: error.message
+    });
+  }
+});
 
 app.post('/api/medicos', async (req, res) => {
   try {
-    const telefono = String(req.body.telefono || '').trim();
+    const telefono = String(
+      req.body.telefono || ''
+    ).trim();
 
     if (telefono && !/^\d{9}$/.test(telefono)) {
       return res.status(400).json({
@@ -96,9 +136,14 @@ app.post('/api/medicos', async (req, res) => {
       });
     }
 
+    const datosMedico = {
+      ...req.body,
+      telefono: telefono
+    };
+
     const data = await supabaseRequest('medicos', {
       method: 'POST',
-      body: JSON.stringify(req.body)
+      body: JSON.stringify(datosMedico)
     });
 
     res.status(201).json(data);
@@ -109,6 +154,7 @@ app.post('/api/medicos', async (req, res) => {
     });
   }
 });
+
 
 // HORARIOS
 app.get('/api/horarios', async (req, res) => {
