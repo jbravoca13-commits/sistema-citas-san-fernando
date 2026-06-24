@@ -49,26 +49,30 @@ app.get('/api/test', async (req, res) => {
 });
 
 // PACIENTES
-app.get('/api/pacientes', async (req, res) => {
-  try {
-    const data = await supabaseRequest('pacientes?select=*&order=id_paciente.asc');
-    res.json(data);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
 app.post('/api/pacientes', async (req, res) => {
   try {
+    const telefono = String(req.body.telefono || '').trim();
+
+    if (telefono && !/^\d{9}$/.test(telefono)) {
+      return res.status(400).json({
+        error: 'El teléfono debe contener exactamente 9 dígitos.'
+      });
+    }
+
     const data = await supabaseRequest('pacientes', {
       method: 'POST',
       body: JSON.stringify(req.body)
     });
+
     res.status(201).json(data);
+
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({
+      error: error.message
+    });
   }
 });
+
 
 // ESPECIALIDADES
 app.get('/api/especialidades', async (req, res) => {
@@ -81,24 +85,28 @@ app.get('/api/especialidades', async (req, res) => {
 });
 
 // MÉDICOS
-app.get('/api/medicos', async (req, res) => {
-  try {
-    const data = await supabaseRequest('medicos?select=*&order=id_medico.asc');
-    res.json(data);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
 
 app.post('/api/medicos', async (req, res) => {
   try {
+    const telefono = String(req.body.telefono || '').trim();
+
+    if (telefono && !/^\d{9}$/.test(telefono)) {
+      return res.status(400).json({
+        error: 'El teléfono debe contener exactamente 9 dígitos.'
+      });
+    }
+
     const data = await supabaseRequest('medicos', {
       method: 'POST',
       body: JSON.stringify(req.body)
     });
+
     res.status(201).json(data);
+
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({
+      error: error.message
+    });
   }
 });
 

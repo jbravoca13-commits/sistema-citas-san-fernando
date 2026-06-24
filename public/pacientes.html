@@ -77,12 +77,18 @@
             min="0"
             max="120"
           >
-
-          <input
-            type="text"
+              <input
+           type="text"
             id="pacienteTelefono"
             placeholder="Teléfono"
-          >
+            maxlength="9"
+            minlength="9"
+            pattern="[0-9]{9}"
+            inputmode="numeric"
+            title="El teléfono debe contener exactamente 9 números"
+          oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+           >
+
 
           <input
             type="text"
