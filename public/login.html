@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Iniciar sesión - Sistema de Citas Médicas</title>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body data-modulo="login" class="login-pagina">
+
+  <main class="login-contenedor">
+
+    <section class="card login-card">
+
+      <div class="login-encabezado">
+        <h1>Sistema web de citas médicas</h1>
+        <p>Posta Médica San Fernando - SJL</p>
+      </div>
+
+      <h2>Iniciar sesión</h2>
+
+      <p class="login-descripcion">
+        Ingrese sus credenciales para acceder al sistema.
+      </p>
+
+      <div id="mensaje" class="mensaje"></div>
+
+      <form id="formLogin">
+
+        <label for="loginUsuario">
+          Usuario
+        </label>
+
+        <input
+          type="text"
+          id="loginUsuario"
+          placeholder="Ingrese su usuario"
+          autocomplete="username"
+          required
+        >
+
+        <label for="loginClave">
+          Contraseña
+        </label>
+
+        <input
+          type="password"
+          id="loginClave"
+          placeholder="Ingrese su contraseña"
+          autocomplete="current-password"
+          required
+        >
+
+        <button type="submit">
+          Ingresar
+        </button>
+
+      </form>
+
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+
+</body>
+</html>

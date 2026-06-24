@@ -159,6 +159,49 @@ app.post('/api/citas', async (req, res) => {
   }
 });
 
+
+// LOGIN
+app.post('/api/login', async (req, res) => {
+  try {
+    const { nombre_usuario, clave } = req.body;
+
+    if (!nombre_usuario || !clave) {
+      return res.status(400).json({
+        error: 'Ingrese el usuario y la contraseña.'
+      });
+    }
+
+    const usuarioSeguro = encodeURIComponent(nombre_usuario);
+    const claveSegura = encodeURIComponent(clave);
+
+    const usuarios = await supabaseRequest(
+      `usuarios?select=id_usuario,nombre_usuario,rol&nombre_usuario=eq.${usuarioSeguro}&clave=eq.${claveSegura}`
+    );
+
+    if (!usuarios || usuarios.length === 0) {
+      return res.status(401).json({
+        error: 'Usuario o contraseña incorrectos.'
+      });
+    }
+
+    const usuario = usuarios[0];
+
+    res.json({
+      mensaje: 'Inicio de sesión correcto.',
+      usuario: {
+        id_usuario: usuario.id_usuario,
+        nombre_usuario: usuario.nombre_usuario,
+        rol: usuario.rol
+      }
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      error: 'No se pudo iniciar sesión: ' + error.message
+    });
+  }
+});
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {

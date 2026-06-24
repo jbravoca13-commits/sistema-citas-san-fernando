@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pacientes - Sistema de Citas Médicas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body data-modulo="pacientes">
+
+  <header>
+    <div class="encabezado">
+
+      <div class="marca">
+        <h1>Sistema web de citas médicas</h1>
+        <p>Posta Médica San Fernando - SJL</p>
+      </div>
+
+      <nav>
+        <a href="index.html">Inicio</a>
+        <a href="pacientes.html" class="activo">Pacientes</a>
+        <a href="medicos.html">Médicos</a>
+        <a href="horarios.html">Horarios</a>
+        <a href="citas.html">Citas</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <main>
+
+    <div id="mensaje" class="mensaje"></div>
+
+    <section class="titulo-modulo">
+      <h2>Módulo de pacientes</h2>
+      <p>Registro y consulta de pacientes.</p>
+    </section>
+
+    <section class="panel-modulo">
+
+      <div class="card">
+
+        <h3>Registrar paciente</h3>
+
+        <form id="formPaciente">
+
+          <input
+            type="text"
+            id="pacienteNombres"
+            placeholder="Nombres"
+            required
+          >
+
+          <input
+            type="text"
+            id="pacienteApellidos"
+            placeholder="Apellidos"
+            required
+          >
+
+          <input
+            type="text"
+            id="pacienteDni"
+            placeholder="DNI"
+            maxlength="8"
+            pattern="[0-9]{8}"
+            title="El DNI debe contener 8 números"
+            required
+          >
+
+          <input
+            type="number"
+            id="pacienteEdad"
+            placeholder="Edad"
+            min="0"
+            max="120"
+          >
+
+          <input
+            type="text"
+            id="pacienteTelefono"
+            placeholder="Teléfono"
+          >
+
+          <input
+            type="text"
+            id="pacienteDireccion"
+            placeholder="Dirección"
+          >
+
+          <button type="submit">
+            Guardar paciente
+          </button>
+
+        </form>
+
+      </div>
+
+      <div class="card">
+
+        <h3>Pacientes registrados</h3>
+
+        <div class="acciones-tabla">
+          <button
+            type="button"
+            onclick="cargarPacientes()"
+          >
+            Actualizar datos
+          </button>
+        </div>
+
+        <div class="tabla-contenedor">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>DNI</th>
+                <th>Edad</th>
+                <th>Teléfono</th>
+                <th>Dirección</th>
+              </tr>
+            </thead>
+
+            <tbody id="tablaPacientes"></tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+
+</body>
+</html>
+```

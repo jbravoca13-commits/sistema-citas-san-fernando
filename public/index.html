@@ -1,94 +1,104 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sistema de Citas Médicas</title>
+  <title>Panel principal - Sistema de Citas Médicas</title>
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+
+<body data-modulo="inicio">
 
   <header>
-    <h1>Sistema web de citas médicas</h1>
-    <p>Posta Médica San Fernando - SJL</p>
+    <div class="encabezado">
+
+      <div class="marca">
+        <h1>Sistema web de citas médicas</h1>
+        <p>Posta Médica San Fernando - SJL</p>
+      </div>
+
+      <nav>
+        <a href="index.html" class="activo">Inicio</a>
+        <a href="pacientes.html">Pacientes</a>
+        <a href="medicos.html">Médicos</a>
+        <a href="horarios.html">Horarios</a>
+        <a href="citas.html">Citas</a>
+
+<button
+  type="button"
+  class="btn-cerrar-sesion"
+  onclick="cerrarSesion()"
+>
+  Cerrar sesión
+</button>
+
+      </nav>
+
+    </div>
   </header>
 
   <main>
 
-    <section class="card">
-      <h2>Registrar paciente</h2>
-      <form id="formPaciente">
-        <input type="text" id="pacienteNombres" placeholder="Nombres" required>
-        <input type="text" id="pacienteApellidos" placeholder="Apellidos" required>
-        <input type="text" id="pacienteDni" placeholder="DNI" maxlength="8" required>
-        <input type="number" id="pacienteEdad" placeholder="Edad">
-        <input type="text" id="pacienteTelefono" placeholder="Teléfono">
-        <input type="text" id="pacienteDireccion" placeholder="Dirección">
-        <button type="submit">Guardar paciente</button>
-      </form>
+    <div id="mensaje" class="mensaje"></div>
+
+    <section class="titulo-modulo">
+      <h2>Panel principal</h2>
+      <p>Seleccione el módulo que desea utilizar.</p>
     </section>
 
-    <section class="card">
-      <h2>Registrar médico</h2>
-      <form id="formMedico">
-        <input type="text" id="medicoNombres" placeholder="Nombres" required>
-        <input type="text" id="medicoApellidos" placeholder="Apellidos" required>
-        <select id="medicoEspecialidad" required></select>
-        <input type="text" id="medicoCmp" placeholder="CMP">
-        <input type="text" id="medicoTelefono" placeholder="Teléfono">
-        <button type="submit">Guardar médico</button>
-      </form>
+    <section class="resumen">
+
+      <div class="indicador">
+        <strong id="totalPacientes">0</strong>
+        Pacientes
+      </div>
+
+      <div class="indicador">
+        <strong id="totalMedicos">0</strong>
+        Médicos
+      </div>
+
+      <div class="indicador">
+        <strong id="totalHorarios">0</strong>
+        Horarios
+      </div>
+
+      <div class="indicador">
+        <strong id="totalCitas">0</strong>
+        Citas
+      </div>
+
     </section>
 
-    <section class="card">
-      <h2>Registrar horario</h2>
-      <form id="formHorario">
-        <select id="horarioMedico" required></select>
-        <input type="date" id="horarioFecha" required>
-        <input type="time" id="horaInicio" required>
-        <input type="time" id="horaFin" required>
-        <button type="submit">Guardar horario</button>
-      </form>
-    </section>
+    <section class="modulos">
 
-    <section class="card">
-      <h2>Programar cita</h2>
-      <form id="formCita">
-        <select id="citaPaciente" required></select>
-        <select id="citaMedico" required></select>
-        <select id="citaHorario" required></select>
-        <input type="date" id="citaFecha" required>
-        <input type="time" id="citaHora" required>
-        <select id="citaEstado">
-          <option value="Pendiente">Pendiente</option>
-          <option value="Atendida">Atendida</option>
-          <option value="Cancelada">Cancelada</option>
-        </select>
-        <button type="submit">Guardar cita</button>
-      </form>
-    </section>
+      <a class="modulo-enlace" href="pacientes.html">
+        <h3>Módulo de pacientes</h3>
+        <p>Registrar y consultar los datos de los pacientes.</p>
+      </a>
 
-    <section class="card full">
-      <h2>Citas registradas</h2>
-      <button onclick="cargarDatos()">Actualizar datos</button>
-      <div id="mensaje"></div>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Paciente</th>
-            <th>Médico</th>
-            <th>Fecha</th>
-            <th>Hora</th>
-            <th>Estado</th>
-          </tr>
-        </thead>
-        <tbody id="tablaCitas"></tbody>
-      </table>
+      <a class="modulo-enlace" href="medicos.html">
+        <h3>Módulo de médicos</h3>
+        <p>Registrar profesionales y relacionarlos con su especialidad.</p>
+      </a>
+
+      <a class="modulo-enlace" href="horarios.html">
+        <h3>Módulo de horarios</h3>
+        <p>Organizar la disponibilidad de atención de cada médico.</p>
+      </a>
+
+      <a class="modulo-enlace" href="citas.html">
+        <h3>Módulo de citas</h3>
+        <p>Programar citas y consultar las atenciones registradas.</p>
+      </a>
+
     </section>
 
   </main>
 
   <script src="app.js"></script>
+
 </body>
 </html>
+```
